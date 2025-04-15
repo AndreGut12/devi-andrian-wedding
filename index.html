@@ -368,31 +368,24 @@
         <div class="col-auto">
           <ul class="list-group">
             <li class="list-group-item custom-card">
-              <!-- Logo Bank -->
               <img src="img/bri.webp" alt="Logo BRI" class="bank-logo mb-2">
               <div class="fw-bold text-pink">BRI</div>
-              <div class="text-pink" id="rekening">704001009464533 - Siti Masnun</div>
-              <button class="btn btn-pink-outline mt-2" onclick="salinRekening()">
+              <div class="text-pink rekening">704001009464533 - Siti Masnun</div>
+              <button class="btn btn-pink-outline mt-2" onclick="salinRekening(this)">
                 Salin No. Rekening
               </button>
-              <div id="notifCopy" class="copy-alert mt-2">Tersalin!</div>
+              <div class="copy-alert mt-2" style="display: none;">Tersalin!</div>
             </li>
-          </ul>
-        </div>
-      </div>
-      <div class="row justify-content-center text-center mt-4">
-        <div class="col-auto">
-          <ul class="list-group">
+            
             <li class="list-group-item custom-card">
-              <!-- Logo Bank --> 
               <img src="img/bri.webp" alt="Logo BRI" class="bank-logo mb-2">
               <div class="fw-bold text-pink">BRI</div>
-              <div class="text-pink" id="rekening">530001011958534 - Rezki Andrian Jahri Lubis</div>
-              <button class="btn btn-pink-outline mt-2" onclick="salinRekening()">
+              <div class="text-pink rekening">530001011958534 - Rezki Andrian Jahri Lubis</div>
+              <button class="btn btn-pink-outline mt-2" onclick="salinRekening(this)">
                 Salin No. Rekening
               </button>
-              <div id="notifCopy" class="copy-alert mt-2">Tersalin!</div>
-            </li>
+              <div class="copy-alert mt-2" style="display: none;">Tersalin!</div>
+            </li>            
           </ul>
         </div>
       </div>
@@ -523,16 +516,20 @@
   </script>
 
 <script>
-  function salinRekening() {
-    const rekening = "704001009464533";
-    navigator.clipboard.writeText(rekening).then(() => {
-      const notif = document.getElementById("notifCopy");
-      notif.style.display = "block";
-      setTimeout(() => {
-        notif.style.display = "none";
-      }, 2000);
-    });
-  }
+function salinRekening(button) {
+  const card = button.closest(".list-group-item");
+  const rekeningText = card.querySelector(".rekening").innerText;
+
+  // Ambil hanya bagian sebelum tanda " - "
+  const nomorRekening = rekeningText.split(" - ")[0];
+
+  const notif = card.querySelector(".copy-alert");
+
+  navigator.clipboard.writeText(nomorRekening).then(function () {
+    notif.style.display = "block";
+    setTimeout(() => notif.style.display = "none", 2000);
+  });
+}
 </script>
 
 </body>
