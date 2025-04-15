@@ -456,6 +456,70 @@ to {
 }
 }
 
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('nama-font-kamu.ttf') format('truetype');
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    color: #3e2c23;
+}
+
+.section-undangan {
+    background: url('img/bg3.png') no-repeat center center;
+    background-size: cover;
+    padding: 3rem 1rem;
+}
+
+.undangan-container {
+    max-width: 700px;
+    margin: auto;
+    background-color: rgba(255, 243, 224, 0.9);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.ayat {
+    font-style: italic;
+    color: #5a4a3f;
+}
+
+.qs {
+    margin-top: 1rem;
+    font-weight: bold;
+    font-family: 'Italianno', cursive;
+    font-size: 2rem;
+    color: #3e2c23;
+}
+
+.isi-undangan {
+    margin-top: 2rem;
+    color: #4a3a2c;
+}
+
+.doa {
+    margin-top: 1.5rem;
+    font-style: italic;
+}
+
+.ucapan {
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.nama-pasangan {
+    font-family: 'Italianno', cursive;
+    font-size: 2.2rem;
+    margin-top: 0.5rem;
+    color: #3e2c23;
+    font-weight: bold;
+}
+
 /* Media Query */
 /* Extra Large */
 @media (max-width: 1200px) {
