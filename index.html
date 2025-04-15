@@ -525,15 +525,28 @@
 
   </script>
 
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const nama = urlParams.get('n');
-    const pronoun = urlParams.get('p');
-    const namaContainer = document.querySelector('.hero h4 span');
-    namaContainer.innerText = `${pronoun} ${nama}`;
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const nama = urlParams.get('n');
+  const pronoun = urlParams.get('p');
+  const namaContainer = document.querySelector('.hero h4 span');
 
-    document.querySelector('#nama').value = nama;
-  </script>
+  if (nama && pronoun && namaContainer) {
+    const decodedNama = decodeURIComponent(nama);
+    const decodedPronoun = decodeURIComponent(pronoun);
+
+    const capitalizeWords = (str) =>
+      str.replace(/\b\w/g, char => char.toUpperCase());
+
+    const fullName = `${capitalizeWords(decodedPronoun)} ${capitalizeWords(decodedNama)}`;
+    namaContainer.innerText = fullName;
+
+    const namaInput = document.querySelector('#nama');
+    if (namaInput) {
+      namaInput.value = capitalizeWords(decodedNama);
+    }
+  }
+</script>
 
   <script>
     function salinRekening(button) {
