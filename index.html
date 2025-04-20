@@ -532,22 +532,31 @@
   const pronoun = urlParams.get('p');
   const namaContainer = document.querySelector('.hero h4 span');
 
-  if (nama && pronoun && namaContainer) {
-    const decodedNama = decodeURIComponent(nama);
-    const decodedPronoun = decodeURIComponent(pronoun);
+  if ((nama || pronoun) && namaContainer) {
+    const decodedNama = nama ? decodeURIComponent(nama) : '';
+    const decodedPronoun = pronoun ? decodeURIComponent(pronoun) : '';
 
     const capitalizeWords = (str) =>
       str.replace(/\b\w/g, char => char.toUpperCase());
 
-    const fullName = `${capitalizeWords(decodedPronoun)} ${capitalizeWords(decodedNama)}`;
+    let fullName = '';
+    if (decodedPronoun && decodedNama) {
+      fullName = `${capitalizeWords(decodedPronoun)} ${capitalizeWords(decodedNama)}`;
+    } else if (decodedPronoun) {
+      fullName = capitalizeWords(decodedPronoun);
+    } else if (decodedNama) {
+      fullName = capitalizeWords(decodedNama);
+    }
+
     namaContainer.innerText = fullName;
 
     const namaInput = document.querySelector('#nama');
-    if (namaInput) {
+    if (namaInput && decodedNama) {
       namaInput.value = capitalizeWords(decodedNama);
     }
   }
 </script>
+
 
   <script>
     function salinRekening(button) {
